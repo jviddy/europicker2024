@@ -1,0 +1,137 @@
+/* CSS reset*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*end of CSS reset */
+
+body {
+    background: #ECEFF1;
+    color: rgba(0,0,0,0.87);
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+   
+
+
+
+/* flexbox team picker */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px; /* to offset the margin */
+  }
+  
+  .box {
+    width: calc(33.33% - 10px); /* 33.33% for large screens, -10px to consider margin */
+    height: 150px;
+    margin: 5px; /* margin between boxes */
+    background-color: #ffffff;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .box {
+      width: calc(50% - 10px); /* 50% for medium screens */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .box {
+      width: 100%; /* 100% for mobile screens */
+    }
+  }
+
+  table {
+    border: 2px solid #eee
+    ;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+
+ table td, table th {
+    border: 1px solid #FFFFFF;
+    padding: 3px 4px;
+  }
+
+
+   
+  table tbody td {
+    font-size: 13px;
+  }
+ 
+  table thead {
+    background: #ddd;
+    border-bottom: 4px solid #333333;
+  }
+  table thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333333;
+    text-align: left;
+    border-left: 2px solid #333333;
+  }
+  table tr.rowGroupName{
+    background: #aaa; 
+  }
+  table thead th:first-child {
+    border-left: none;
+  }
+  
+  table tr.rowPickTeam:hover {
+    background: #f5f7e5;
+  }
+
+  table tr.rowPickTeam:{
+    background: #f5f7e5;
+  }
+
+  .selected { 
+    background-color: red; 
+    }
+
+.totalRow {
+    font-weight: bold;
+}

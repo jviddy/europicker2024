@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/functions.js"></script>
+    <!-- update the version number as needed -->
+    <!-- <script defer src="/__/firebase/10.10.0/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <!--<script defer src="/__/firebase/10.10.0/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/10.10.0/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/10.10.0/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/10.10.0/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/10.10.0/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/10.10.0/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/10.10.0/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/10.10.0/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/10.10.0/firebase-performance-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <!--
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    -->  
+    <link rel="stylesheet" href="css/styles.css">
+
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="box">
+        <table class="teamPicker" id="A">
+          <thead>
+            <tr class="rowGroupName">
+              <th colspan="3 colgroup">Group A</th>
+            </tr>
+            <tr>
+              <th class="cellCountry">Country</th>
+              <th class="cellRank">Fifa Rank</th>
+              <th class="cellCost">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="rowPickTeam" id="16">
+              <td class="cellCountry">Germany</td>
+              <td class="cellRank">16</td>
+              <td class="cellCost">16</td>
+            </tr>
+            <tr class="rowPickTeam" id="7">
+              <td class="cellCountry">Scotland</td>
+              <td class="cellRank">39</td>
+              <td class="cellCost">7</td>
+            </tr>
+            <tr class="rowPickTeam" id="11">
+              <td class="cellCountry">Hungary</td>
+              <td class="cellRank">26</td>
+              <td class="cellCost">11</td>
+            </tr>
+            <tr class="rowPickTeam" id="15">
+              <td class="cellCountry">Switzerland</td>
+              <td class="cellRank">19</td>
+              <td class="cellCost">15</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+      <div class="box">4</div>
+      <div class="box">5</div>
+      <div class="box">6</div>
+    </div>
+
+  </table>
+
+    
+  <div class="container">
+    <div class="box">
+      <div id="errMaxTeams" style="display: none;"><P class="errorText">"You already have the maximum number of teams selected.</P></div>
+      <div id="errMaxCost" style="display: none;"><P class="errorText">"You have exceeded the budget.</P></div>
+      <div id="selectedTeams"></div>
+    </div>
+  </div> 
+
+  </body>
+</html>
