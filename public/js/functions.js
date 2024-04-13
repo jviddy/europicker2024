@@ -62,12 +62,13 @@ document.addEventListener("DOMContentLoaded", function() {
             // If row id is already in array, remove it
             var index = selectedTeams.indexOf(rowId);
             selectedTeams.splice(index, 1);
-            costTotal -= parseInt(rowId);
+
+            costTotal -= parseInt(getTeamCost(rowId));
             teamCount -= 1;
         } else {
             // If row id is not in array, add it
             selectedTeams.push(rowId);
-            costTotal += parseInt(rowId);
+            costTotal += parseInt(getTeamCost(rowId));
             teamCount += 1;
         }
 
@@ -87,6 +88,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    function getTeamCost (teamID){
+
+        var pickedTeam = teamList.find(country => country.countryId === teamID);
+        return pickedTeam.cost;
+    }
+
+    function getTeamName (teamID){
+
+        var pickedTeam = teamList.find(country => country.countryId === teamID);
+        return pickedTeam.countryName;
+    }
 
     function displaySelectedTeams() {
         var selectedTeamsContainer = document.getElementById("selectedTeams");
@@ -109,9 +121,6 @@ document.addEventListener("DOMContentLoaded", function() {
             // Populate table with selected teams
             for (var t = 0; t < selectedTeams.length; t++) {
                 console.log(selectedTeams[t])
-                var selectedTeam = teamList.find(country => country.countryId === selectedTeams[t]);
-                    var tcost = selectedTeam.cost;
-                    console.log (tcost);
                     var row = table.insertRow();
                     //console.log(tCost);
                     row.setAttribute('id', selectedTeams[t]);
@@ -122,10 +131,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     });
                     
                     var countryCell = row.insertCell();
-                    countryCell.textContent = selectedTeam.countryName;
+                    countryCell.textContent = getTeamName(selectedTeams[t]);
                     
                     var costCell = row.insertCell();
-                    costCell.textContent = selectedTeam.cost;
+                    costCell.textContent = getTeamCost(selectedTeams[t]);
                 }
             
                 var totalRow = table.insertRow();
