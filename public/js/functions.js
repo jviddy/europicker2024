@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const costCap = 30;
     const maxTeamCount = 3;
 
+    var maxTeamReached = false;
+    var maxCostReached = false;
+
     let teamList = [
         {"countryId":"0","countryName":"0","groupLetter":"0","groupPos":"0","fifaRank":0,"cost":0},
         {"countryId":"F2","countryName":"Georgia","groupLetter":"F","groupPos":"2","fifaRank":75,"cost":1},
@@ -44,20 +47,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 cells[k].addEventListener("click", function() {
                     var row = this.parentNode; // Get the parent tr element
                     var rowId = row.id;
-                    addRemoveTeam(rowId);
-                    toggleRowColor(row);
+                    addRemoveTeam(row, rowId);
+                    //toggleRowColor(row);
                 });
             }
         }
     }
 
-    function addRemoveTeam(rowId) {
-        console.log("Clicked row id:", rowId);
-        var maxTeams = false;
-        if (teamCount == maxTeamCount) {
-            maxTeams = true;
-
-        }          
+    function addRemoveTeam(row, rowId) {
+        console.log("Clicked row id:", rowId);     
         if (selectedTeams.includes(rowId)) {
             // If row id is already in array, remove it
             var index = selectedTeams.indexOf(rowId);
@@ -65,16 +63,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
             costTotal -= parseInt(getTeamCost(rowId));
             teamCount -= 1;
+            toggleRowColor(row);
         } else {
-            // If row id is not in array, add it
+            if(teamCount >= maxTeamCount){
+               console.log("at max");//turn on can't add team message 
+            } else {
+                console.log("still room");
+                // If row id is not in array, add it
             selectedTeams.push(rowId);
             costTotal += parseInt(getTeamCost(rowId));
             teamCount += 1;
+            toggleRowColor(row);
+            //}
+            }
+            
         }
 
         console.log("Selected teams array:", selectedTeams);
         
         displaySelectedTeams();
+        updateTeamCount();
     }
 
 
@@ -89,16 +97,36 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function getTeamCost (teamID){
-
         var pickedTeam = teamList.find(country => country.countryId === teamID);
         return pickedTeam.cost;
     }
 
-    function getTeamName (teamID){
-
+    function getTeamName (teamID){ 
         var pickedTeam = teamList.find(country => country.countryId === teamID);
         return pickedTeam.countryName;
     }
+
+    function updateTeamCount () {
+        if(costTotal > costCap){
+            maxCostReached = true;
+            showHideError("errMaxCost","inline");
+        } else {
+            maxCostReached = false;
+            showHideError("errMaxCost","none");
+        }
+    
+        if (teamCount >= maxTeamCount){
+            maxTeamReached = true;
+            showHideError("errMaxTeams","inline");
+        } else {
+            maxTeamReached = false;
+            showHideError("errMaxTeams","none");
+        }
+        console.log("max teams reached: " + maxTeamReached);
+        console.log("cost cap exceed: " + maxCostReached)
+    }
+
+
 
     function displaySelectedTeams() {
         var selectedTeamsContainer = document.getElementById("selectedTeams");
@@ -125,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     //console.log(tCost);
                     row.setAttribute('id', selectedTeams[t]);
                     row.addEventListener("click", function() {
-                        addRemoveTeam(this.id);
+                        addRemoveTeam(row, this.id);
                         var teamRow = document.getElementById(this.id);
                         toggleRowColor(teamRow);
                     });
@@ -148,9 +176,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Append table to selectedTeamsContainer
                 selectedTeamsContainer.appendChild(table);    
             }
+    }
 
-           
-        
+    function showHideError(elId, RequiredState) {
+        console.log("elid: " + elId);
+        console.log("required: " + RequiredState);
+        var htmlElement = document.getElementById(elId);
+        htmlElement.style.display = RequiredState;
     }
     
    

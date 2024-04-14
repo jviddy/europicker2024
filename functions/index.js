@@ -17,3 +17,27 @@ const logger = require("firebase-functions/logger");
 //   logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
+
+// The Cloud Functions for Firebase SDK to create Cloud Functions and triggers.
+const {logger} = require("firebase-functions");
+const {onRequest} = require("firebase-functions/v2/https");
+const {onDocumentCreated} = require("firebase-functions/v2/firestore");
+
+// The Firebase Admin SDK to access Firestore.
+const {initializeApp} = require("firebase-admin/app");
+const {getFirestore} = require("firebase-admin/firestore");
+
+initializeApp();
+
+exports.submitFootballData = functions.https.onRequest((request, response) => {
+    const data = request.body;
+
+    admin.firestore().collection('footballData').add(data)
+    .then(() => {
+        response.json({ message: 'Entry received!' });
+    })
+    .catch(error => {
+        response.status(500).json({ error: 'Something went wrong.' });
+        console.error(error);
+    });
+});
